@@ -7,32 +7,51 @@ export default class Bishop extends Piece {
         super(player);
     }
 
-    isWithinBoard(i, j){
-
+    isWithinBoard(square){
+        let i = square.row;
+        let j = square.col;
         return ((0 <= i && i <= 7) && (0 <= j && j <= 7));
     }
     
     getAvailableMoves(board) {
 
-        let location = board.findPiece(this)
+        let location = board.findPiece(this);
         let row = location.row; let col = location.col;
         let moves = [];
         let squareToCheck;
         let pieceToCheck;
+        let tempMoves;
 
+        [-1, +1].forEach(gradient => {
+            tempMoves = [];
 
-
-    
-        // checking y=x
-        [-1, +1].forEach(gradient =>{
             for ( let i = -7; i<=7; i++ ){
-                if (i != 0){
-                    if (this.isWithinBoard(row + i*gradient, col + i)){
-                        
-                        moves.push(Square.at(row + i*gradient, col + i))
+
+                squareToCheck = Square.at(row + i*gradient, col + i);
+
+                if (this.isWithinBoard(squareToCheck)){
+
+                    pieceToCheck = board.getPiece(squareToCheck);
+
+                    if (i < 0){
+                        if (!pieceToCheck){
+                            tempMoves.push(squareToCheck);
+                        }
+                        else {
+                            tempMoves = [];
+                        }
+                    }
+                    else if (i > 0){
+                        if (!pieceToCheck){
+                            tempMoves.push(squareToCheck);
+                        }
+                        else {
+                            break;
+                        }
                     }
                 }
             }
+            moves = moves.concat(tempMoves);
         });  
         return moves;
 
