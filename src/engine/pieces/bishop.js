@@ -37,6 +37,10 @@ export default class Bishop extends Piece {
                         if (!pieceToCheck){
                             tempMoves.push(squareToCheck);
                         }
+                        else if (pieceToCheck.player !== this.player){
+                            tempMoves = [];
+                            tempMoves.push(squareToCheck);
+                            }
                         else {
                             tempMoves = [];
                         }
@@ -45,6 +49,10 @@ export default class Bishop extends Piece {
                         if (!pieceToCheck){
                             tempMoves.push(squareToCheck);
                         }
+                        else if (pieceToCheck.player !== this.player){
+                            tempMoves.push(squareToCheck);
+                            break;
+                            }
                         else {
                             break;
                         }
