@@ -8,12 +8,12 @@ export default class Pawn extends Piece {
     }
 
 
-    isSquareFree(i, j, board){
-        if (board.getPiece(Square.at(i, j)) === undefined){
-            return true
-        }
-        return false
-    }
+    // isSquareFree(i, j, board){
+    //     if (board.getPiece(Square.at(i, j)) === undefined){
+    //         return true
+    //     }
+    //     return false
+    // }
 
     getAvailableMoves(board) {
 
@@ -29,13 +29,13 @@ export default class Pawn extends Piece {
             startingRow = 6
         }
         
-        if (this.isSquareFree(location.row + direction, location.col, board)){
+        if (board.isSquareFree(Square.at(location.row + direction, location.col))){
             moves.push(Square.at(location.row + direction, location.col))
-            if (location.row === startingRow && this.isSquareFree(location.row + 2*direction, location.col, board)){
+            if (location.row === startingRow && board.isSquareFree(Square.at(location.row + 2*direction, location.col))){
                     moves.push(Square.at(location.row + 2*direction, location.col))
             }
         }
-        
+
     return moves
     }
 }
