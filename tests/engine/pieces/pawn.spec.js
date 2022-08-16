@@ -14,10 +14,11 @@ describe('Pawn', () => {
         it('can only move one square up if they have already moved', () => {
             const pawn = new Pawn(Player.WHITE);
             board.setPiece(Square.at(1, 0), pawn);
-            pawn.moveTo(board, Square.at(2, 0));
 
+
+            pawn.moveTo(board, Square.at(2, 0));
             const moves = pawn.getAvailableMoves(board);
-            
+
             moves.should.have.length(1);
             moves.should.deep.include(Square.at(3, 0));
         });
