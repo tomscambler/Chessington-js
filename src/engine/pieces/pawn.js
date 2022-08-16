@@ -8,24 +8,34 @@ export default class Pawn extends Piece {
     }
 
 
+    isSquareFree(i, j, board){
+        if (board.getPiece(Square.at(i, j)) === undefined){
+            return true
+        }
+        return false
+    }
 
     getAvailableMoves(board) {
 
         let location = board.findPiece(this)
-        if (this.player === Player.WHITE) {
-            if (location.row != 1){
-                return [Square.at(location.row + 1, location.col)]
-            }
-            return [Square.at(location.row + 1, location.col), 
-                    Square.at(location.row + 2, location.col)]
-        } else {
-            if (location.row != 6){
-                return [Square.at(location.row -1, location.col)]
-            }
-            return [Square.at(location.row -1, location.col), 
-                    Square.at(location.row - 2, location.col)]
+        let moves  = []; let direction; let startingRow;
+
+        if (this.player === Player.WHITE){
+            direction = 1
+            startingRow = 1
         }
+        else {
+            direction = -1
+            startingRow = 6
+        }
+        
+        if (this.isSquareFree(location.row + direction, location.col, board)){
+            moves.push(Square.at(location.row + direction, location.col))
+            if (location.row === startingRow && this.isSquareFree(location.row + 2*direction, location.col, board)){
+                    moves.push(Square.at(location.row + 2*direction, location.col))
+            }
+        }
+        
+    return moves
     }
-
-
 }

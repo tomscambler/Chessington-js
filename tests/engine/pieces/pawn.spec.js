@@ -69,7 +69,7 @@ describe('Pawn', () => {
         const blockingPiece = new Rook(Player.WHITE);
         board.setPiece(Square.at(6, 3), pawn);
         board.setPiece(Square.at(5, 3), blockingPiece);
-
+        // console.log("piece", board.getPiece(Square.at(5, 3)))
         const moves = pawn.getAvailableMoves(board);
 
         moves.should.be.empty;
