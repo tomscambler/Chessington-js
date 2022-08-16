@@ -15,27 +15,44 @@ export default class Pawn extends Piece {
     //     return false
     // }
 
+
     getAvailableMoves(board) {
 
         let location = board.findPiece(this)
-        let moves  = []; let direction; let startingRow;
+        let moves  = []; let direction; let startingRow; let finalRow;
+        let squareToCheck; let pieceToCheck;
 
         if (this.player === Player.WHITE){
-            direction = 1
+            direction = +1
             startingRow = 1
+            finalRow = 7
         }
         else {
             direction = -1
             startingRow = 6
+            finalRow = 0
         }
-        
-        if (board.isSquareFree(Square.at(location.row + direction, location.col))){
-            moves.push(Square.at(location.row + direction, location.col))
-            if (location.row === startingRow && board.isSquareFree(Square.at(location.row + 2*direction, location.col))){
-                    moves.push(Square.at(location.row + 2*direction, location.col))
-            }
+        if (location.row === finalRow){
+            return moves
         }
 
-    return moves
+        squareToCheck = Square.at(location.row + direction, location.col)
+        if (board.isSquareFree(squareToCheck)){
+            moves.push(squareToCheck)
+            squareToCheck = Square.at(location.row + 2*direction, location.col)
+            if (location.row === startingRow && board.isSquareFree(squareToCheck)){
+                    moves.push(squareToCheck)
+            }
+        }
+        [-1, +1].forEach(sidewaysDirection => {
+            squareToCheck = Square.at(location.row + direction, location.col + sidewaysDirection);
+            pieceToCheck = board.getPiece(squareToCheck);
+            if (pieceToCheck && pieceToCheck.player === this.opposingPlayer){
+                moves.push(squareToCheck)
+            }
+        })
+
+        return moves
+
     }
 }
