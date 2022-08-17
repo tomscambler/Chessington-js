@@ -44,8 +44,6 @@ export default class Pawn extends Piece {
                 moves.push(squareToCheck)
             }
         })
-
-        return moves
-
+        return moves;
     }
 }

@@ -87,6 +87,15 @@ describe('Pawn', () => {
             moves.should.not.deep.include(Square.at(5, 3));
         });
 
+        it('cannot move off the side edge of the board', () => {
+            const pawn = new Pawn(Player.WHITE);
+            board.setPiece(Square.at(1,0), pawn);
+
+            const moves = pawn.getAvailableMoves(board);
+
+            moves.should.not.deep.include(Square.at(2,-1));
+        });
+
     });
 
     describe('black pawns', () => {
@@ -166,6 +175,14 @@ describe('Pawn', () => {
             moves.should.not.deep.include(Square.at(3, 3));
         });
 
+        it('cannot move off the side edge of the board', () => {
+            const pawn = new Pawn(Player.BLACK);
+            board.setPiece(Square.at(5,7), pawn);
+
+            const moves = pawn.getAvailableMoves(board);
+
+            moves.should.not.deep.include(Square.at(6,8));
+        });
     });
 
     it('cannot move if there is a piece in front', () => {
