@@ -1,3 +1,5 @@
+import Player from '../player';
+import Square from '../square';
 import Piece from './piece';
 
 export default class Knight extends Piece {
@@ -5,7 +7,34 @@ export default class Knight extends Piece {
         super(player);
     }
 
+
+
     getAvailableMoves(board) {
-        return new Array(0);
+
+        let location = board.findPiece(this);
+        let row = location.row; let col = location.col;
+        let moves = [];
+        let squareToCheck;
+        let pieceToCheck;
+
+        [
+            [+1,+2],
+            [-1,+2],
+            [+1,-2],
+            [-1,-2],
+            [+2,+1],
+            [-2,+1],
+            [+2,-1],
+            [-2,-1]
+        ].forEach(possibleMove => {
+            
+            squareToCheck = Square.at(row + possibleMove[0], col + possibleMove[1]);
+            if (this.isWithinBoard(squareToCheck)){
+                moves.push(squareToCheck);
+            }
+        });
+
+        console.log(moves);
+        return moves;
     }
 }

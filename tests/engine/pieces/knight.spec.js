@@ -1,4 +1,10 @@
-import Knight from '../../../src/engine/pieces/knight';
+import 'chai/register-should';
+import Pawn from '../../../src/engine/pieces/pawn';
+import Rook from '../../../src/engine/pieces/rook';
+import King from '../../../src/engine/pieces/king';
+import Board from '../../../src/engine/board';
+import Player from '../../../src/engine/player';
+import Square from '../../../src/engine/square';
 
 describe('Knight', () => {
 
