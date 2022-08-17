@@ -40,7 +40,7 @@ export default class Pawn extends Piece {
         [-1, +1].forEach(sidewaysDirection => {
             squareToCheck = Square.at(location.row + direction, location.col + sidewaysDirection);
             let pieceToCheck = board.getPiece(squareToCheck);
-            if (pieceToCheck && pieceToCheck.player === this.opposingPlayer){   //could have just been pieceToCheck.player != this.player!
+            if (pieceToCheck && pieceToCheck.player !== this.player){   //could have just been pieceToCheck.player != this.player!
                 moves.push(squareToCheck)
             }
         })
