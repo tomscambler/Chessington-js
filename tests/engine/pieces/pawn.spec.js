@@ -76,16 +76,16 @@ describe('Pawn', () => {
             moves.should.not.deep.include(Square.at(5, 3));
         });
 
-        it('cannot take the opposing king', () => {
-            const pawn = new Pawn(Player.WHITE);
-            const opposingKing = new King(Player.BLACK);
-            board.setPiece(Square.at(4, 4), pawn);
-            board.setPiece(Square.at(5, 3), opposingKing);
+        // it('cannot take the opposing king', () => {
+        //     const pawn = new Pawn(Player.WHITE);
+        //     const opposingKing = new King(Player.BLACK);
+        //     board.setPiece(Square.at(4, 4), pawn);
+        //     board.setPiece(Square.at(5, 3), opposingKing);
 
-            const moves = pawn.getAvailableMoves(board);
+        //     const moves = pawn.getAvailableMoves(board);
 
-            moves.should.not.deep.include(Square.at(5, 3));
-        });
+        //     moves.should.not.deep.include(Square.at(5, 3));
+        // });
 
         it('cannot move off the side edge of the board', () => {
             const pawn = new Pawn(Player.WHITE);
@@ -164,16 +164,16 @@ describe('Pawn', () => {
             moves.should.not.deep.include(Square.at(3, 3));
         });
 
-        it('cannot take the opposing king', () => {
-            const pawn = new Pawn(Player.BLACK);
-            const opposingKing = new King(Player.WHITE);
-            board.setPiece(Square.at(4, 4), pawn);
-            board.setPiece(Square.at(3, 3), opposingKing);
+        // it('cannot take the opposing king', () => {
+        //     const pawn = new Pawn(Player.BLACK);
+        //     const opposingKing = new King(Player.WHITE);
+        //     board.setPiece(Square.at(4, 4), pawn);
+        //     board.setPiece(Square.at(3, 3), opposingKing);
 
-            const moves = pawn.getAvailableMoves(board);
+        //     const moves = pawn.getAvailableMoves(board);
 
-            moves.should.not.deep.include(Square.at(3, 3));
-        });
+        //     moves.should.not.deep.include(Square.at(3, 3));
+        // });
 
         it('cannot move off the side edge of the board', () => {
             const pawn = new Pawn(Player.BLACK);
