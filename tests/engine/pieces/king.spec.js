@@ -13,6 +13,25 @@ describe('King', () => {
     let board;
     beforeEach(() => board = new Board());
 
+    it('cannnot move into check', () => {
+
+        const king = new King(Player.WHITE);
+        const rook = new Rook(Player.BLACK);
+
+        board.setPiece(Square.at(3, 4), king);
+        board.setPiece(Square.at(4, 7), rook);
+
+        const moves = king.getAvailableMoves(board);
+
+        const expectedMoves = [
+            Square.at(2, 3), Square.at(2, 4), Square.at(2, 5), Square.at(3, 5),
+            //Square.at(4, 5), Square.at(4, 4), Square.at(4, 3), 
+            Square.at(3, 3)
+        ];
+
+        moves.should.deep.include.members(expectedMoves);
+    });
+
     it('can move to adjacent squares', () => {
         const king = new King(Player.WHITE);
         board.setPiece(Square.at(3, 4), king);
