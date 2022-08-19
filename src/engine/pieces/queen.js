@@ -57,7 +57,6 @@ export default class Queen extends Piece {
                 }
             }
             moves = moves.concat(tempMoves);
-            console.log(moves);
         }); 
 
         [-1,+1].forEach(direction => {

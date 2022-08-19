@@ -16,6 +16,7 @@ export default class King extends Piece {
         let squareToCheck; let pieceToCheck;
 
         [-1, 0, +1].forEach(horizontalMove => {
+
             [-1, 0, +1].forEach(verticalMove => {
 
                 squareToCheck = Square.at(row + horizontalMove, col + verticalMove);
@@ -34,6 +35,38 @@ export default class King extends Piece {
             });
         });
 
+        // let opponentMoves = this.getOpponentMoves(board);
+
+        // moves.forEach(possibleMove)
+
+        // let remainingMoves = moves.filter(x => {
+
+            
+
+        //     !opponentMoves.includes((x.row, x.col))
+
+        // });
+        
         return moves;
+    }
+
+    getOpponentMoves(board){
+
+        let piece;
+        let opponentMoves = [];
+        
+        for(let i=0; i<8; i++){
+            for (let j=0; j<8; j++){
+
+                piece = board.getPiece(Square.at(i,j))
+
+                if (piece && piece.player !== this.player){
+
+                    opponentMoves.push(...piece.getAvailableMoves(board));
+
+                }
+            }
+        }
+        return opponentMoves;
     }
 }

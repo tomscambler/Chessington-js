@@ -24,12 +24,6 @@ export default class Board {
         return this.board[square.row][square.col];
     }
 
-    isSquareFree(square){
-        if (this.getPiece(square) === undefined){
-            return true
-        }
-        return false
-    }
 
 
     findPiece(pieceToFind) {
