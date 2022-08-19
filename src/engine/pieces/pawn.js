@@ -29,10 +29,12 @@ export default class Pawn extends Piece {
         }
         //checks if a forward move can be made
         let squareToCheck = Square.at(location.row + direction, location.col)
-        if (board.isSquareFree(squareToCheck)){
+        let pieceAtSquare = board.getPiece(squareToCheck)
+        if (pieceAtSquare === undefined){
             moves.push(squareToCheck)
             squareToCheck = Square.at(location.row + 2*direction, location.col)
-            if (location.row === startingRow && board.isSquareFree(squareToCheck)){
+            pieceAtSquare = board.getPiece(squareToCheck)
+            if (pieceAtSquare === undefined && location.row === startingRow){
                     moves.push(squareToCheck)
             }
         }

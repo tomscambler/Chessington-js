@@ -35,20 +35,29 @@ export default class King extends Piece {
             });
         });
 
-        // let opponentMoves = this.getOpponentMoves(board);
+        let opponentMoves = this.getOpponentMoves(board); 
+        let remainingMoves = [];  
 
-        // moves.forEach(possibleMove)
+        movesLoop:
+        for (let i = 0; i<moves.length; i++){
+            for (let j = 0; j<opponentMoves.length; j++){
+                if (this.areSquaresEqual(moves[i], opponentMoves[j])){
+                    continue movesLoop
+                }
+            }
 
-        // let remainingMoves = moves.filter(x => {
+            remainingMoves.push(moves[i])
+        }
 
-            
-
-        //     !opponentMoves.includes((x.row, x.col))
-
-        // });
         
-        return moves;
+        return remainingMoves;
     }
+
+    areSquaresEqual (square1, square2){
+
+        return square1.row === square2.row && square1.col === square2.col
+    }
+
 
     getOpponentMoves(board){
 
