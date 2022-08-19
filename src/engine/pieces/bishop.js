@@ -29,7 +29,7 @@ export default class Bishop extends Piece {
 
                 squareToCheck = Square.at(row + i*gradient, col + i);
 
-                if (this.isWithinBoard(squareToCheck)){
+                if (board.checkSquareWithinBoard(squareToCheck)){
 
                     pieceToCheck = board.getPiece(squareToCheck);
 

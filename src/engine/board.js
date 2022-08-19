@@ -51,4 +51,10 @@ export default class Board {
             this.currentPlayer = (this.currentPlayer === Player.WHITE ? Player.BLACK : Player.WHITE);
         }
     }
+
+    checkSquareWithinBoard(square){
+        let i = square.row;
+        let j = square.col;
+        return ((0 <= i && i <= 7) && (0 <= j && j <= 7));
+    }
 }

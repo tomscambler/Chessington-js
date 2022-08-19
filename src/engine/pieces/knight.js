@@ -29,12 +29,10 @@ export default class Knight extends Piece {
         ].forEach(possibleMove => {
             
             squareToCheck = Square.at(row + possibleMove[0], col + possibleMove[1]);
-            if (this.isWithinBoard(squareToCheck)){
+            if (board.checkSquareWithinBoard(squareToCheck)){
                 moves.push(squareToCheck);
             }
         });
-
-        console.log(moves);
         return moves;
     }
 }
